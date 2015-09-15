@@ -1,11 +1,5 @@
 package org.weiping.study.encoding;
 
-import info.monitorenter.cpdetector.io.ASCIIDetector;
-import info.monitorenter.cpdetector.io.CodepageDetectorProxy;
-import info.monitorenter.cpdetector.io.JChardetFacade;
-import info.monitorenter.cpdetector.io.ParsingDetector;
-import info.monitorenter.cpdetector.io.UnicodeDetector;
-
 import java.io.File;
 import java.nio.charset.Charset;
 
@@ -30,13 +24,13 @@ public class JudgeFileCode {
 		  detector按照“谁最先返回非空的探测结果，就以该结果为准”的原则返回探测到的 
 		  字符集编码。 
 		--------------------------------------------------------------------------*/
-		CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
+//		CodepageDetectorProxy detector = CodepageDetectorProxy.getInstance();
 
 		/*------------------------------------------------------------------------- 
 		  ParsingDetector可用于检查HTML、XML等文件或字符流的编码,构造方法中的参数用于 
 		  指示是否显示探测过程的详细信息，为false不显示。 
 		---------------------------------------------------------------------------*/
-		detector.add(new ParsingDetector(false));// 如果不希望判断xml的encoding，而是要判断该xml文件的编码，则可以注释掉
+//		detector.add(new ParsingDetector(false));// 如果不希望判断xml的encoding，而是要判断该xml文件的编码，则可以注释掉
 
 		/*-------------------------------------------------------------------------- 
 		   JChardetFacade封装了由Mozilla组织提供的JChardet，它可以完成大多数文件的编码 
@@ -47,16 +41,16 @@ public class JudgeFileCode {
 //		detector.add(JChardetFacade.getInstance());
 
 		// ASCIIDetector用于ASCII编码测定
-		detector.add(ASCIIDetector.getInstance());
+//		detector.add(ASCIIDetector.getInstance());
 		// UnicodeDetector用于Unicode家族编码的测定
-		detector.add(UnicodeDetector.getInstance());
+//		detector.add(UnicodeDetector.getInstance());
 		Charset charset = null;
 		File f = new File(file);
-		try {
-			charset = detector.detectCodepage(f.toURI().toURL());
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+//		try {
+//			charset = detector.detectCodepage(f.toURI().toURL());
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
 		if (charset != null) {
 			System.out.println(f.getAbsolutePath() + "编码是：" + charset.name());
 		} else {
